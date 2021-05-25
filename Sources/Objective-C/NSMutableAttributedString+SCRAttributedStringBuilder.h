@@ -164,3 +164,10 @@
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^expansion)(CGFloat expansion);
 
 @end
+
+@interface NSString (SCRAttributedStringBuilder)
+
+// 生成 Attributed String
+@property (nonatomic, copy, readonly) NSMutableAttributedString *attributedBuild;
+
+@end

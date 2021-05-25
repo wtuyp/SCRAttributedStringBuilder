@@ -7,7 +7,7 @@
 //
 
 #import "OCViewController.h"
-#import "NSString+SCRAttributedStringBuilder.h"
+#import "NSMutableAttributedString+SCRAttributedStringBuilder.h"
 
 @interface OCViewController ()
 

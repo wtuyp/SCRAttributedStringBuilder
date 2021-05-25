@@ -478,3 +478,11 @@
 }
 
 @end
+
+@implementation NSString (SCRAttributedStringBuilder)
+
+- (NSMutableAttributedString *)attributedBuild {
+    return NSMutableAttributedString.build(self);
+}
+
+@end
