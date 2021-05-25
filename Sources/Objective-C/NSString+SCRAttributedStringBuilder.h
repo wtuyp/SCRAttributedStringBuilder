@@ -12,6 +12,6 @@
 @interface NSString (SCRAttributedStringBuilder)
 
 // 生成 Attributed String
-- (NSMutableAttributedString *)attributedBuild;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *attributedBuild;
 
 @end

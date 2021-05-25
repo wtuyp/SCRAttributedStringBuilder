@@ -18,149 +18,149 @@
 #pragma mark - Content
 
 // 创建一个 Attributed String
-+ (NSMutableAttributedString *(^)(NSString *string))build;
+@property (nonatomic, copy, class, readonly) NSMutableAttributedString *(^build)(NSString *string);
 
 // 尾部追加一个新的 Attributed String
-- (NSMutableAttributedString *(^)(NSString *string))append;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^append)(NSString *string);
 
 // 同 append 比，参数是 NSAttributedString
-- (NSMutableAttributedString *(^)(NSAttributedString *attributedString))attributedAppend;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^attributedAppend)(NSAttributedString *attributedString);
 
 // 插入一个新的 Attributed String
-- (NSMutableAttributedString *(^)(NSString *string, NSUInteger index))insert;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^insert)(NSString *string, NSUInteger index);
 
 // 增加间隔，spacing 的单位是 point。放到 Content 的原因是，间隔是通过空格+字体模拟的，但不会导致 Range 的切换
-- (NSMutableAttributedString *(^)(CGFloat spacing))appendSpacing;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendSpacing)(CGFloat spacing);
 
 // 尾部追加一个附件。同插入字符不同，插入附件并不会将当前 Range 切换成附件所在的 Range，下同
-- (NSMutableAttributedString *(^)(NSTextAttachment *))appendAttachment;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendAttachment)(NSTextAttachment *);
 
 // 在尾部追加图片附件，默认使用图片尺寸，图片垂直居中，为了设置处理垂直居中（基于字体的 capHeight），需要在添加图片附件之前设置字体
-- (NSMutableAttributedString *(^)(UIImage *image))appendImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendImage)(UIImage *image);
 
 // 在尾部追加图片附件，可以自定义尺寸，默认使用图片前一位的字体进行对齐，其他同 appendImage
-- (NSMutableAttributedString *(^)(UIImage *image, CGSize imageSize))appendSizeImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendSizeImage)(UIImage *image, CGSize imageSize);
 
 // 在尾部追加图片附件，可以自定义想对齐的字体，图片使用自身尺寸，其他同 appendImage
-- (NSMutableAttributedString *(^)(UIImage *, UIFont *))appendFontImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendFontImage)(UIImage *, UIFont *);
 
 // 在尾部追加图片附件，可以自定义尺寸和想对齐的字体，其他同 appendImage
-- (NSMutableAttributedString *(^)(UIImage *image, CGSize imageSize, UIFont *font))appendCustomImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendCustomImage)(UIImage *image, CGSize imageSize, UIFont *font);
 
 // 在 index 位置插入图片附件，由于不确定字体信息，因此需要显式输入字体
-- (NSMutableAttributedString *(^)(UIImage *image, CGSize imageSize, NSUInteger index, UIFont *font))insertImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^insertImage)(UIImage *image, CGSize imageSize, NSUInteger index, UIFont *font);
 
 // 同 insertImage 的区别在于，会在当前 Range 的头部插入图片附件，如果没有 Range 则什么也不做
-- (NSMutableAttributedString *(^)(UIImage *, CGSize, UIFont *))headInsertImage;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^headInsertImage)(UIImage *, CGSize, UIFont *);
 
 #pragma mark - Range
 
 // 根据 start 和 length 设置范围
-- (NSMutableAttributedString *(^)(NSInteger location, NSInteger length))range;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^range)(NSInteger location, NSInteger length);
 
 // 将范围设置为当前字符串全部
-- (NSMutableAttributedString *)all;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *all;
 
 // 匹配所有符合的字符串
-- (NSMutableAttributedString *(^)(NSString *string))match;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^match)(NSString *string);
 
 // 从头开始匹配第一个符合的字符串
-- (NSMutableAttributedString *(^)(NSString *string))matchFirst;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^matchFirst)(NSString *string);
 
 // 为尾开始匹配第一个符合的字符串
-- (NSMutableAttributedString *(^)(NSString *string))matchLast;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^matchLast)(NSString *string);
 
 #pragma mark - Basic
 
 // 字体
-- (NSMutableAttributedString *(^)(UIFont *font))font;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^font)(UIFont *font);
 
 // 字号，默认字体
-- (NSMutableAttributedString *(^)(CGFloat fontSize))fontSize;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^fontSize)(CGFloat fontSize);
 
 // 字体颜色
-- (NSMutableAttributedString *(^)(UIColor *color))color;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^color)(UIColor *color);
 
 // 字体颜色，16 进制
-- (NSMutableAttributedString *(^)(NSInteger hex))hexColor;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^hexColor)(NSInteger hex);
 
 // 背景颜色
-- (NSMutableAttributedString *(^)(UIColor *color))backgroundColor;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^backgroundColor)(UIColor *color);
 
 #pragma mark - Glyph
 
 // 删除线风格
-- (NSMutableAttributedString *(^)(NSUnderlineStyle style))strikethroughStyle;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^strikethroughStyle)(NSUnderlineStyle style);
 
 // 删除线颜色
 // 由于 iOS 的 Bug，删除线在 iOS 10.3 中无法正确显示，需要配合 baseline 使用
 // 具体见：https://stackoverflow.com/questions/43074652/ios-10-3-nsstrikethroughstyleattributename-is-not-rendered-if-applied-to-a-sub
-- (NSMutableAttributedString *(^)(UIColor *color))strikethroughColor;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^strikethroughColor)(UIColor *color);
 
 // 下划线风格
-- (NSMutableAttributedString *(^)(NSUnderlineStyle style))underlineStyle;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^underlineStyle)(NSUnderlineStyle style);
 
 // 下划线颜色
-- (NSMutableAttributedString *(^)(UIColor *color))underlineColor;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^underlineColor)(UIColor *color);
 
 // 字形边框颜色
-- (NSMutableAttributedString *(^)(UIColor *color))strokeColor;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^strokeColor)(UIColor *color);
 
 // 字形边框宽度
-- (NSMutableAttributedString *(^)(CGFloat width))strokeWidth;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^strokeWidth)(CGFloat width);
 
 // 字体效果
-- (NSMutableAttributedString *(^)(NSString *effect))textEffect;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^textEffect)(NSString *effect);
 
 // 阴影
-- (NSMutableAttributedString *(^)(NSShadow *shadow))shadow;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^shadow)(NSShadow *shadow);
 
 // 链接
-- (NSMutableAttributedString *(^)(NSURL *url))link;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^link)(NSURL *url);
 
 #pragma mark - Paragraph
 
 // 行间距
-- (NSMutableAttributedString *(^)(CGFloat spacing))lineSpacing;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^lineSpacing)(CGFloat spacing);
 
 // 段间距
-- (NSMutableAttributedString *(^)(CGFloat spacing))paragraphSpacing;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^paragraphSpacing)(CGFloat spacing);
 
 // 对齐
-- (NSMutableAttributedString *(^)(NSTextAlignment alignment))alignment;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^alignment)(NSTextAlignment alignment);
 
 // 换行
-- (NSMutableAttributedString *(^)(NSLineBreakMode mode))lineBreakMode;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^lineBreakMode)(NSLineBreakMode mode);
 
 // 段第一行头部缩进
-- (NSMutableAttributedString *(^)(CGFloat indent))firstLineHeadIndent;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^firstLineHeadIndent)(CGFloat indent);
 
 // 段头部缩进
-- (NSMutableAttributedString *(^)(CGFloat indent))headIndent;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^headIndent)(CGFloat indent);
 
 // 段尾部缩进
-- (NSMutableAttributedString *(^)(CGFloat indent))tailIndent;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^tailIndent)(CGFloat indent);
 
 // 行高，iOS 的行高会在顶部增加空隙，效果一般不符合 UI 的认知，很少使用
 // 这里为了完全匹配 Sketch 的行高效果，会根据当前字体对 baselineOffset 进行修正
 // 具体见: https://joeshang.github.io/2018/03/29/ios-multiline-text-spacing/
-- (NSMutableAttributedString *(^)(CGFloat lineHeight))lineHeight;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^lineHeight)(CGFloat lineHeight);
 
 #pragma mark - Special
 
 // 基线偏移
-- (NSMutableAttributedString *(^)(CGFloat offset))baselineOffset;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^baselineOffset)(CGFloat offset);
 
 // 连字
-- (NSMutableAttributedString *(^)(CGFloat ligature))ligature;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^ligature)(CGFloat ligature);
 
 // 字间距
-- (NSMutableAttributedString *(^)(CGFloat kern))kern;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^kern)(CGFloat kern);
 
 // 倾斜
-- (NSMutableAttributedString *(^)(CGFloat obliqueness))obliqueness;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^obliqueness)(CGFloat obliqueness);
 
 // 扩张
-- (NSMutableAttributedString *(^)(CGFloat expansion))expansion;
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^expansion)(CGFloat expansion);
 
 @end
