@@ -33,7 +33,7 @@
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendSpacing)(CGFloat spacing);
 
 // 尾部追加一个附件。同插入字符不同，插入附件并不会将当前 Range 切换成附件所在的 Range，下同
-@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendAttachment)(NSTextAttachment *);
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendAttachment)(NSTextAttachment *attachment);
 
 // 在尾部追加图片附件，默认使用图片尺寸，图片垂直居中，为了设置处理垂直居中（基于字体的 capHeight），需要在添加图片附件之前设置字体
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendImage)(UIImage *image);
@@ -42,7 +42,7 @@
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendSizeImage)(UIImage *image, CGSize imageSize);
 
 // 在尾部追加图片附件，可以自定义想对齐的字体，图片使用自身尺寸，其他同 appendImage
-@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendFontImage)(UIImage *, UIFont *);
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendFontImage)(UIImage *image, UIFont *font);
 
 // 在尾部追加图片附件，可以自定义尺寸和想对齐的字体，其他同 appendImage
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^appendCustomImage)(UIImage *image, CGSize imageSize, UIFont *font);
@@ -51,7 +51,7 @@
 @property (nonatomic, copy, readonly) NSMutableAttributedString *(^insertImage)(UIImage *image, CGSize imageSize, NSUInteger index, UIFont *font);
 
 // 同 insertImage 的区别在于，会在当前 Range 的头部插入图片附件，如果没有 Range 则什么也不做
-@property (nonatomic, copy, readonly) NSMutableAttributedString *(^headInsertImage)(UIImage *, CGSize, UIFont *);
+@property (nonatomic, copy, readonly) NSMutableAttributedString *(^headInsertImage)(UIImage *image, CGSize imageSize, UIFont *font);
 
 #pragma mark - Range
 
